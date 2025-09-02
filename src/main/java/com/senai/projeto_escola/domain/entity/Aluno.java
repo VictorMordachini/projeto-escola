@@ -1,6 +1,7 @@
 package com.senai.projeto_escola.domain.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -15,6 +16,7 @@ public class Aluno extends Usuario {
 
     @NotNull(message = "O curso não pode ser nulo")
     @ManyToOne
+    @JoinColumn(name = "curso_id")
     private Curso curso;
 
     @NotBlank(message = "A turma não pode ser nula, vazia ou apenas espaços em branco")
