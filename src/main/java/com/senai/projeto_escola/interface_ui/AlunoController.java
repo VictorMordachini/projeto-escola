@@ -1,7 +1,7 @@
 package com.senai.projeto_escola.interface_ui;
 
+import com.senai.projeto_escola.application.service.AlunoService;
 import com.senai.projeto_escola.domain.entity.Aluno;
-import com.senai.projeto_escola.domain.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,40 +12,30 @@ import java.util.List;
 public class AlunoController {
 
     @Autowired
-    private AlunoRepository alunoRepository;
-
-    @PostMapping
-    public Aluno createAluno(@RequestBody Aluno aluno) {
-        return alunoRepository.save(aluno);
-    }
+    private AlunoService alunoService;
 
     @GetMapping
-    public List<Aluno> getAllAlunos() {
-        return alunoRepository.findAll();
+    public List<Aluno> listarAlunos(){
+        return alunoService.listarAlunos();
     }
 
     @GetMapping("/{id}")
-    public Aluno getAlunoById(@PathVariable String id) {
-        return alunoRepository.findById(id).orElseThrow(() -> new RuntimeException("Aluno não encontrado"));
+    public Aluno buscarAlunoPorID(@PathVariable String id){
+        return alunoService.buscarAlunoPorId(id);
+    }
+
+    @PostMapping
+    public Aluno salvarAluno(@RequestBody Aluno aluno){
+        return alunoService.salvarAluno(aluno);
     }
 
     @PutMapping("/{id}")
-    public Aluno updateAluno(@PathVariable String id, @RequestBody Aluno alunoDetails) {
-        Aluno aluno = alunoRepository.findById(id).orElseThrow(() -> new RuntimeException("Aluno não encontrado"));
-
-        aluno.setNome(alunoDetails.getNome());
-        aluno.setCpf(alunoDetails.getCpf());
-        aluno.setCurso(alunoDetails.getCurso());
-        aluno.setTurma(alunoDetails.getTurma());
-        aluno.setTipo(alunoDetails.getTipo());
-
-        return alunoRepository.save(aluno);
-
+    public Aluno editarAluno(@PathVariable String id ,@RequestBody Aluno aluno){
+        return alunoService.atualizarAluno(id,aluno);
     }
-
     @DeleteMapping("/{id}")
-    public void deleteAluno(@PathVariable String id) {
-        alunoRepository.deleteById(id);
+    public void deletarAluno(@PathVariable String id){
+        alunoService.deletarAluno(id);
     }
 
 }
