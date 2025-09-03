@@ -1,5 +1,6 @@
 package com.senai.projeto_escola.interface_ui;
 
+import com.senai.projeto_escola.application.dto.AlunoDTO;
 import com.senai.projeto_escola.application.service.AlunoService;
 import com.senai.projeto_escola.domain.entity.Aluno;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,23 +16,23 @@ public class AlunoController {
     private AlunoService alunoService;
 
     @GetMapping
-    public List<Aluno> listarAlunos(){
+    public List<AlunoDTO> listarAlunos(){
         return alunoService.listarAlunos();
     }
 
     @GetMapping("/{id}")
-    public Aluno buscarAlunoPorID(@PathVariable String id){
+    public AlunoDTO buscarAlunoPorID(@PathVariable String id){
         return alunoService.buscarAlunoPorId(id);
     }
 
     @PostMapping
-    public Aluno salvarAluno(@RequestBody Aluno aluno){
-        return alunoService.salvarAluno(aluno);
+    public AlunoDTO salvarAluno(@RequestBody AlunoDTO alunoDTO){
+        return alunoService.salvarAluno(alunoDTO);
     }
 
     @PutMapping("/{id}")
-    public Aluno editarAluno(@PathVariable String id ,@RequestBody Aluno aluno){
-        return alunoService.atualizarAluno(id,aluno);
+    public AlunoDTO editarAluno(@PathVariable String id ,@RequestBody AlunoDTO alunoDTO){
+        return alunoService.atualizarAluno(id,alunoDTO);
     }
     @DeleteMapping("/{id}")
     public void deletarAluno(@PathVariable String id){
