@@ -14,10 +14,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class AlunoService {
 
     @Autowired
-    private AlunoRepository alunoRepository;
+    AlunoRepository alunoRepository;
     @Autowired
     CursoRepository cursoRepository;
 

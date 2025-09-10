@@ -4,14 +4,16 @@ import com.senai.projeto_escola.domain.entity.Aluno;
 import com.senai.projeto_escola.domain.entity.Curso;
 
 public record AlunoDTO(
+        String id,
         String nome,
-        String cpf,
+        Long cpf,
         String idCurso,
         String turma
 ) {
     public static AlunoDTO fromEntity(Aluno aluno) {
         if (aluno == null) return null;
         return new AlunoDTO(
+                aluno.getId(),
                 aluno.getNome(),
                 aluno.getCpf(),
                 aluno.getCurso() != null ? aluno.getCurso().getId() : null,

@@ -1,36 +1,51 @@
 package com.senai.projeto_escola.application.service;
 
 
+import com.senai.projeto_escola.application.dto.CursoDTO;
 import com.senai.projeto_escola.domain.entity.Curso;
 import com.senai.projeto_escola.domain.repository.CursoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class CursoService {
 
-    @Autowired
-    private CursoRepository cursoRepository;
+    private final CursoRepository cursoRepository;
 
-    public List<Curso> listarCursos() {
-        return cursoRepository.findAll();
+    public CursoService(CursoRepository cursoRepository) {
+        this.cursoRepository = cursoRepository;
     }
 
-    public Curso buscarCursoPorId(String id) {
-        return cursoRepository.findById(id).orElse(null);
+    @Transactional(readOnly = true)
+    public List<CursoDTO> listarCursos() {
+        return cursoRepository.findAll()
+                .stream()
+                .map(CursoDTO::fromEntity)
+                .toList();
     }
 
-    public Curso salvarCurso(Curso curso) {
-        return cursoRepository.save(curso);
+    @Transactional(readOnly = true)
+    public CursoDTO buscarCursoPorId(String id) {
+        Curso curso = cursoRepository.findById(id).orElse(null);
+        return CursoDTO.fromEntity(curso);
     }
 
-    public Curso atualizarCurso(String id, Curso cursoAtualizado) {
-        if (!cursoRepository.existsById(id))
-            return null;
-        cursoAtualizado.setId(id);
-        return cursoRepository.save(cursoAtualizado);
+    public CursoDTO salvarCurso(CursoDTO dto) {
+        Curso salvo = cursoRepository.save(dto.toEntity());
+        return CursoDTO.fromEntity(salvo);
+    }
+
+    public CursoDTO atualizarCurso(String id, CursoDTO dto) {
+        Curso existente = cursoRepository.findById(id).orElse(null);
+
+        existente.setTitulo(dto.titulo());
+        existente.setCargaHoraria(dto.cargaHoraria());
+
+        Curso atualizado = cursoRepository.save(existente);
+        return CursoDTO.fromEntity(atualizado);
     }
 
     public void deletarCurso(String id) {

@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/cursos")
+@RequestMapping("/curso")
 public class CursoController {
 
     @Autowired

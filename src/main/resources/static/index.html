@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <<title>Projeto Escola - CRUD Básico</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+<div class="container">
+    <h1>Projeto Escola — CRUD Básico</h1>
+
+    <section class="card">
+        <h2>Cadastro de Curso</h2>
+        <form id="cursoForm">
+            <div class="row">
+                <label>
+                    Título
+                    <input id="cursoTitulo" placeholder="Ex.: Programação Java" required />
+                </label>
+                <label>
+                    Carga Horária
+                    <input id="cursoCarga" type="number" min="1" step="1" placeholder="Ex.: 120" required />
+                </label>
+            </div>
+            <div class="actions">
+                <button type="submit" id="btnCursoSubmit">Cadastrar Curso</button>
+                <button type="button" id="btnCursoCancelar" class="muted hidden">Cancelar edição</button>
+            </div>
+        </form>
+
+        <h3>Cursos Cadastrados</h3>
+        <table class="table" id="cursoTable">
+            <thead>
+            <tr>
+                <th>Título</th>
+                <th>Carga Horária</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody><!-- linhas geradas via JS --></tbody>
+        </table>
+    </section>
+
+    <section class="card">
+        <h2>Cadastro de Usuário</h2>
+        <form id="usuarioForm">
+            <div class="row">
+                <label>
+                    Nome
+                    <input id="userNome" placeholder="Ex.: Maria Silva" required />
+                </label>
+                <label>
+                    CPF (apenas números)
+                    <input id="userCpf" inputmode="numeric" placeholder="Ex.: 12345678900" required />
+                </label>
+            </div>
+            <div class="row">
+                <label>
+                    Tipo de Usuário
+                    <select id="userTipo" required>
+                        <option value="">-- selecione --</option>
+                        <option value="ALUNO">Aluno</option>
+                        <option value="PROFESSOR">Professor</option>
+                    </select>
+                </label>
+                <label id="boxTurma" class="hidden">
+                    Turma (Aluno)
+                    <input id="userTurma" placeholder="Ex.: 1A" />
+                </label>
+            </div>
+            <div class="row" id="rowAluno" class="hidden">
+                <label>
+                    Curso (Aluno)
+                    <select id="userCurso">
+                        <option value="">-- selecione --</option>
+                    </select>
+                </label>
+            </div>
+            <div class="row hidden" id="rowProfessor">
+                <label>
+                    Turmas (Professor) — separadas por vírgula
+                    <input id="userTurmas" placeholder="Ex.: 1A, 2B" />
+                </label>
+                <label>
+                    Disciplinas (Professor) — separadas por vírgula
+                    <input id="userDisciplinas" placeholder="Ex.: Matemática, Algoritmos" />
+                </label>
+            </div>
+            <div class="actions">
+                <button type="submit" id="btnUsuarioSubmit">Cadastrar Usuário</button>
+                <button type="button" id="btnUsuarioCancelar" class="muted hidden">Cancelar edição</button>
+            </div>
+        </form>
+
+        <h3>Alunos</h3>
+        <table class="table" id="alunoTable">
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Turma</th>
+                <th>Curso (id)</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody><!-- linhas geradas via JS --></tbody>
+        </table>
+
+        <h3>Professores</h3>
+        <table class="table" id="profTable">
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Turmas</th>
+                <th>Disciplinas</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody><!-- linhas geradas via JS --></tbody>
+        </table>
+    </section>
+</div>
+
+<script src="./script.js"></script>
+</body>
+</html>
