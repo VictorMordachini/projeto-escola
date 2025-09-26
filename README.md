@@ -1,77 +1,38 @@
 API de Gestão Escolar com Spring Boot
-📖 Sobre o Projeto
-Esta é uma API RESTful desenvolvida como um sistema simplificado para gestão de uma escola. A aplicação permite o gerenciamento completo (CRUD - Create, Read, Update, Delete) de Cursos, Alunos e Professores, oferecendo uma base sólida e organizada para sistemas acadêmicos.
+API RESTful para um sistema simplificado de gestão escolar, desenvolvida com Java e Spring Boot. O projeto permite o gerenciamento completo de Cursos, Alunos e Professores, com uma arquitetura limpa e desacoplada.
 
-O projeto foi construído seguindo as melhores práticas de desenvolvimento com Spring Boot, separando as responsabilidades em camadas (Domínio, Aplicação e Interface). Além do backend, uma interface web simples em HTML, CSS e JavaScript é fornecida para facilitar a interação e teste dos endpoints da API.
+🚀 Visão Geral das Funcionalidades
+Gerenciamento de Cursos: CRUD completo (Criar, Ler, Atualizar, Excluir) para cursos, incluindo título e carga horária.
 
-✨ Funcionalidades
-Gestão de Cursos:
+Gerenciamento de Alunos: CRUD completo para alunos, permitindo associá-los a um curso existente.
 
-📝 Cadastrar novos cursos com título e carga horária.
+Gerenciamento de Professores: CRUD completo para professores, com suporte para múltiplas turmas e disciplinas.
 
-🔄 Atualizar informações de cursos existentes.
+Interface Web Simples: Uma página estática (index.html) é fornecida para interagir e testar a API diretamente pelo navegador.
 
-🗑️ Excluir cursos.
+Arquitetura em Camadas: Organização clara do código em camadas de Interface (Controllers), Aplicação (Services e DTOs) e Domínio (Entities e Repositories).
 
-📋 Listar todos os cursos cadastrados.
+🛠️ Tecnologias Utilizadas
+Java 21
 
-🔍 Buscar um curso específico por ID.
+Spring Boot 3.3.5
 
-Gestão de Alunos:
+Spring Data JPA / Hibernate
 
-🧑‍🎓 Cadastrar novos alunos com nome, CPF, turma e associá-los a um curso.
+Banco de Dados em Memória H2
 
-🔄 Atualizar dados cadastrais dos alunos.
+Lombok
 
-🗑️ Excluir alunos.
+Maven
 
-📋 Listar todos os alunos.
+Frontend: HTML5, CSS3 e JavaScript puro para a interface de interação.
 
-🔍 Buscar um aluno específico por ID.
-
-Gestão de Professores:
-
-👨‍🏫 Cadastrar novos professores com nome, CPF, turmas e disciplinas que lecionam.
-
-🔄 Atualizar dados cadastrais dos professores.
-
-🗑️ Excluir professores.
-
-📋 Listar todos os professores.
-
-🔍 Buscar um professor específico por ID.
-
-🛠️ Ferramentas e Tecnologias
-A seleção de tecnologias foi pensada para criar uma aplicação robusta, moderna e de fácil manutenção.
-
-Backend
-Tecnologia	Versão	Propósito
-Java	21	Linguagem de programação principal, escolhida por sua robustez, ecossistema maduro e forte tipagem.
-Spring Boot	3.3.5	Framework principal para a construção da API. Ele acelera o desenvolvimento com sua convenção sobre configuração, auto-configuração e servidor embutido.
-Spring Data JPA	-	Simplifica a camada de persistência de dados, automatizando a criação de repositórios e facilitando a comunicação com o banco de dados.
-Hibernate	-	Implementação do JPA utilizada pelo Spring Data para mapear os objetos Java para o modelo relacional do banco de dados (ORM).
-H2 Database	-	Banco de dados relacional em memória. Ideal para ambientes de desenvolvimento e teste, pois não requer instalação e é reiniciado a cada execução da aplicação.
-Maven	4.0.0	Ferramenta de gerenciamento de dependências e build do projeto. O pom.xml centraliza todas as bibliotecas necessárias.
-Lombok	-	Biblioteca que reduz o código boilerplate (getters, setters, construtores) nas classes de modelo através de anotações, tornando o código mais limpo.
-
-Exportar para as Planilhas
-Frontend
-Tecnologia	Propósito
-HTML5	Estruturação da interface web para interação com a API.
-CSS3	Estilização da página, tornando a interface mais agradável e organizada.
-JavaScript (ES6+)	Responsável pela interatividade da página, realizando as chamadas fetch para a API REST e manipulando o DOM para exibir os dados dinamicamente.
-
-Exportar para as Planilhas
-🚀 Como Executar o Projeto
-Para executar a aplicação localmente, siga os passos abaixo:
-
+🏃‍♀️ Como Rodar a Aplicação
 Pré-requisitos:
 
-JDK 21 ou superior instalado.
+Java JDK 21 ou superior.
 
-Maven configurado no PATH do sistema (opcional, pois o projeto usa o Maven Wrapper).
-
-Passos:
+Apache Maven (opcional, pois o projeto utiliza o Maven Wrapper).
 
 Clone o repositório:
 
@@ -91,25 +52,21 @@ No Linux ou macOS:
 Bash
 
 ./mvnw spring-boot:run
-Acesse a aplicação:
+A API estará disponível em http://localhost:8080. Para acessar a interface web, navegue para http://localhost:8080/index.html.
 
-O backend estará disponível em http://localhost:8080.
-
-A interface web pode ser acessada em http://localhost:8080/index.html.
-
-API Endpoints
-A API segue os padrões REST e utiliza o formato JSON para as requisições e respostas.
+📚 Endpoints da API
+A API segue os padrões REST e utiliza o formato JSON.
 
 Curso
 Método	Endpoint	Descrição
 GET	/curso	Retorna a lista de todos os cursos.
 GET	/curso/{id}	Retorna os detalhes de um curso específico.
 POST	/curso	Cria um novo curso.
-PUT	/curso/{id}	Atualiza as informações de um curso existente.
+PUT	/curso/{id}	Atualiza um curso existente.
 DELETE	/curso/{id}	Exclui um curso.
 
 Exportar para as Planilhas
-Exemplo de corpo (payload) para POST/PUT em /curso:
+Payload para POST / PUT:
 
 JSON
 
@@ -122,11 +79,11 @@ Método	Endpoint	Descrição
 GET	/aluno	Retorna a lista de todos os alunos.
 GET	/aluno/{id}	Retorna os detalhes de um aluno específico.
 POST	/aluno	Cria um novo aluno.
-PUT	/aluno/{id}	Atualiza as informações de um aluno existente.
+PUT	/aluno/{id}	Atualiza um aluno existente.
 DELETE	/aluno/{id}	Exclui um aluno.
 
 Exportar para as Planilhas
-Exemplo de corpo (payload) para POST/PUT em /aluno:
+Payload para POST / PUT:
 
 JSON
 
@@ -139,13 +96,13 @@ JSON
 Professor
 Método	Endpoint	Descrição
 GET	/professor	Retorna a lista de todos os professores.
-GET	/professor/{id}	Retorna os detalhes de um professor específico.
+GET	/professor/{id}	Retorna os detalhes de um professor.
 POST	/professor	Cria um novo professor.
-PUT	/professor/{id}	Atualiza as informações de um professor existente.
+PUT	/professor/{id}	Atualiza um professor existente.
 DELETE	/professor/{id}	Exclui um professor.
 
 Exportar para as Planilhas
-Exemplo de corpo (payload) para POST/PUT em /professor:
+Payload para POST / PUT:
 
 JSON
 
@@ -156,17 +113,17 @@ JSON
     "disciplinas": ["Matemática", "Algoritmos"]
 }
 🏗️ Estrutura do Projeto
-O código-fonte está organizado em uma arquitetura de 3 camadas para garantir baixo acoplamento e alta coesão:
+O código-fonte é organizado em uma arquitetura de 3 camadas para garantir baixo acoplamento e alta coesão.
 
 com.senai.projeto_escola
 │
 ├── application
-│   ├── dto         # Data Transfer Objects: objetos que carregam dados entre as camadas.
-│   └── service     # Contém a lógica de negócio da aplicação.
+│   ├── dto         # Data Transfer Objects: desacopla a camada de domínio da interface.
+│   └── service     # Contém a lógica de negócio e as regras da aplicação.
 │
 ├── domain
-│   ├── entity      # Entidades JPA que mapeiam as tabelas do banco de dados.
-│   └── repository  # Interfaces do Spring Data JPA para acesso aos dados.
+│   ├── entity      # Entidades JPA que representam as tabelas do banco de dados.
+│   └── repository  # Interfaces Spring Data JPA para abstrair o acesso aos dados.
 │
 └── interface_ui
-    └── controller  # Controladores REST que expõem os endpoints da API.
+    └── controller  # Controladores REST que expõem os endpoints da API para o mundo externo.
