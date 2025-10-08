@@ -36,7 +36,7 @@ API RESTful para um sistema simplificado de gestão escolar, desenvolvida com Ja
 
 2.  **Clone o repositório:**
     ```bash
-    git clone https://github.com/seu-usuario/api-escola-spring.git
+    git clone https://github.com/victormordachini/api-escola-spring.git
     cd api-escola-spring
     ```
 
